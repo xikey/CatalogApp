@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/lyContent"
+    android:layoutDirection="rtl"
+    tools:context=".ui.dashboard.DashboardFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            app:title="گروه های کالا"
+            android:layout_width="match_parent"
+            android:elevation="1dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            app:navigationIcon="@drawable/img_yadegar_logo_colored_small_png"
+            app:layout_collapseMode="pin"
+            app:popupTheme="@style/Theme.RazanCatalogApp.PopupOverlay"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvGroups"
+            android:background="@color/color_gray_recycler"
+            android:layout_width="match_parent"
+            android:paddingBottom="80dp"
+            android:clipToPadding="false"
+            android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+
+
+    <include  android:id="@+id/lyProgress"  layout="@layout/layout_progress_match_parent_with_title" />
+
+
+</RelativeLayout>

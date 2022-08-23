@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#99ca3c</color>
+    <color name="colorPrimaryDark">#b8b8b8</color>
+    <color name="colorPrimary_light">#C5CAE9</color>
+    <color name="colorAccent">#f29a38</color>
+    <color name="colorAccent_dark">#ca9905</color>
+    <color name="background_color">#f2f1f6</color>
+    <color name="color_brown">#c99638</color>
+    <color name="color_text">#2c2e33</color>
+    <color name="color_sub_text">#929396</color>
+    <color name="color_dark_button">#616266</color>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="red">#F44336</color>
+    <color name="black">#FF000000</color>
+    <color name="black_grey">#FF3c3f41</color>
+    <color name="black_grey_accent">#FF4e5254</color>
+    <color name="black_alpha_50">#99000000</color>
+    <color name="black_alpha_40">#77000000</color>
+    <color name="black_alpha_30">#44000000</color>
+    <color name="black_alpha_20">#20000000</color>
+    <color name="black_alpha_10">#11000000</color>
+    <color name="black_alpha_5">#05000000</color>
+    <color name="white_alpha_30">#44FFFFFF</color>
+    <color name="white_alpha_10">#22FFFFFF</color>
+    <color name="yellow_alpha_50">#99FFEB3B</color>
+    <color name="green_alpha_50">#998BC34A</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="white_alpha_80">#DDFFFFFF</color>
+    <color name="white_alpha_50">#AAFFFFFF</color>
+    <color name="primary_alpha_50">#9999ca3c</color>
+    <color name="black_alpha_80">#BB000000</color>
+    <color name="white_gray">#f9f9f9</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="transparent">#00000000</color>
+
+
+    <color name="colorGradientStart">#99ca3c</color>
+    <color name="colorGradientCenter">#99ca3c</color>
+    <color name="colorGradientEnd">#0baf4d</color>
+    <color name="color_green_pastel">#85BB4D</color>
+
+    <color name="color_yellow">#FAA800</color>
+
+    <color name="colorPrimary_05">#1113cf22</color>
+    <color name="color_gray_line">#ebebeb</color>
+    <color name="color_gray_recycler">#f6f6f6</color>
+    <color name="color_discount_back">#ffed00</color>
+    <color name="color_unavailable_back">#e73d4a</color>
+    <!--    <color name="color_side_navigation">#f55b5b</color>-->
+    <color name="color_side_navigation">#eb1933</color>
+    <color name="color_indicator_grey_selected">#b8b8b8</color>
+    <color name="color_indicator_grey_unselected">#55b8b8b8</color>
+</resources>

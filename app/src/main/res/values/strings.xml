@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">یادگار پخش</string>
+    <string name="title_home">خانه</string>
+    <string name="title_dashboard">محصولات</string>
+    <string name="title_about_us">درباره ما</string>
+
+
+    <string name="attention"> توجه</string>
+    <string name="yes"> بلی</string>
+    <string name="no"> خیر</string>
+
+    <string name="cancel">بستن</string>
+    <string name="action_yes">بلی</string>
+    <string name="yadegar_address">گیلان، رشت، کیلومتر 7 جاده تهران، جنب دانشکده تربیت بدنی</string>
+    <string name="yadegar_phone">013-33691115-7</string>
+    <string name="yadegar_fax">013-33691116</string>
+    <string name="yadegar_email">info@yadegarpakhsh.com</string>
+
+</resources>

@@ -1,0 +1,54 @@
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nsvMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:layoutDirection="rtl"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rvAdvertiseBox"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/white">
+
+            <include
+                android:id="@+id/advertiseHeaderBox"
+                layout="@layout/advertise_slide_show"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true" />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/txtOffers"
+            android:text="پیشنهاد ما"
+            android:textSize="@dimen/normal_font_size"
+            android:textColor="@color/color_text"
+          android:paddingRight="15dp"
+            android:paddingBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include layout="@layout/ly_home_my_special_day_products" />
+
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"/>
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

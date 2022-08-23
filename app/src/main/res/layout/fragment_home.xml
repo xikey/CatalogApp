@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layoutDirection="rtl"
+    android:id="@+id/lyRoot"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:fitsSystemWindows="true"
+            android:layoutDirection="rtl"
+            android:theme="@style/Theme.RazanCatalogApp.AppBarOverlay">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@color/white"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:titleEnabled="false">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"/>
+
+                    <LinearLayout
+                        android:layoutDirection="rtl"
+                        android:gravity="right"
+                        android:background="@drawable/bg_rectangle_home_search"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize">
+
+                        <ImageView
+                            android:scaleType="center"
+                            android:src="@drawable/ic_round_search_24"
+                            android:layout_width="?attr/actionBarSize"
+                            android:layout_height="?attr/actionBarSize"/>
+
+                        <TextView
+                            android:id="@+id/txtSearch"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:textColor="#515257"
+                            android:textSize="@dimen/small_font_size"
+                            android:text="جستجو در میان کالاها"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:elevation="1dp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/white"
+                    app:navigationIcon="@drawable/img_yadegar_logo_colored_small_png"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/Theme.RazanCatalogApp.PopupOverlay">
+
+                    <LinearLayout
+                        android:layout_marginLeft="60dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:padding="12dp"
+                            android:src="@drawable/img_yadegar_text_english_colored_small"
+                            android:textSize="@dimen/small_font_size"
+                            android:id="@+id/txtBranchName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black">
+
+                        </ImageView>
+
+
+                    </LinearLayout>
+
+
+                </com.google.android.material.appbar.MaterialToolbar>
+
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <include android:id="@+id/lyContent" layout="@layout/home_fragment_scrolling_layout" />
+
+        <include  android:id="@+id/lyProgress"  layout="@layout/layout_progress_match_parent_with_title" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</FrameLayout>
