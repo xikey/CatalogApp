@@ -18,7 +18,7 @@ class ServerApiClient {
         private var retrofitWithoutHeader: Retrofit? = null
 
 
-        private fun initHeader(context: Context): OkHttpClient.Builder? {
+        private fun initHeader(): OkHttpClient.Builder? {
             val httpClient = OkHttpClient.Builder()
 
             httpClient.connectTimeout(60, TimeUnit.SECONDS)
@@ -44,7 +44,7 @@ class ServerApiClient {
         }
 
 
-        fun getClient(context: Context?): Retrofit? {
+        fun getClient(): Retrofit? {
             return try {
 
 
@@ -66,14 +66,14 @@ class ServerApiClient {
         }
 
 
-        fun getClientWithHeader(context: Context?): Retrofit? {
+        fun getClientWithHeader(): Retrofit? {
             if (retrofitWithHeader == null) {
                 retrofitWithHeader = Retrofit.Builder()
                     .baseUrl(
                           BuildConfig.URL
                     )
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(initHeader(context!!)!!.build())
+                    .client(initHeader()!!.build())
                     .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                     .build()
             }

@@ -11,36 +11,22 @@ import androidx.fragment.app.Fragment;
 
 import com.zikey.android.razancatalogapp.R;
 import com.zikey.android.razancatalogapp.core.ImageViewWrapper;
-import com.zikey.android.razancatalogapp.model.Advertise;
 
-import java.util.List;
-
-
-/**
- * Created by Torabi on 9/6/2016.
- */
 
 public class AdvertiseMainFragment extends Fragment {
 
     private static final String ARG_PAGE_NUMBER = "page_number";
     private static final String ARG_PAGE_HEIGHT = "ARG_PAGE_HEIGHT";
+    private static final String ARG_IMAGE_URL = "ARG_IMAGE_URL";
 
-    List<Advertise> advertiseList;
 
-    public void setAdvertiseList(List<Advertise> advertiseList) {
-        this.advertiseList = advertiseList;
-    }
-
-    public AdvertiseMainFragment() {
-    }
-
-    public static AdvertiseMainFragment newInstance(int page, int height, List<Advertise> advertises) {
+    public static AdvertiseMainFragment newInstance(int page, int height, String imageUrl) {
         AdvertiseMainFragment fragment = new AdvertiseMainFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE_NUMBER, page);
         args.putInt(ARG_PAGE_HEIGHT, height);
+        args.putString(ARG_IMAGE_URL, imageUrl);
         fragment.setArguments(args);
-        fragment.setAdvertiseList(advertises);
         return fragment;
     }
 
@@ -53,29 +39,18 @@ public class AdvertiseMainFragment extends Fragment {
 
         int page = getArguments().getInt(ARG_PAGE_NUMBER, -1);
         int height = getArguments().getInt(ARG_PAGE_HEIGHT, 300);
+        String imageUrl = getArguments().getString(ARG_IMAGE_URL, "");
 
 
         final int placeHolder = R.drawable.img_yadegar_loader;
 
         try {
-//                    String url = SessionManagement.getInstance(getActivity()).getAdvertise_1Url();
-            String url = advertiseList.get(page - 1).getImageUrl();
-            new ImageViewWrapper(getActivity()).FromUrl(url).into(imgAdv).defaultImage(placeHolder).load();
+
+            new ImageViewWrapper(getActivity()).FromUrl(imageUrl).into(imgAdv).defaultImage(placeHolder).load();
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-//                imgAdv.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        try {
-//
-//                            UriParser.run(getActivity(), SessionManagement.getInstance(getActivity()).getAdvertise_1Uri());
-//                        } catch (Exception ex) {
-//                        ex.printStackTrace();
-//                        }
-//                    }
-//                });
 
 
         final ViewGroup.LayoutParams params = imgAdv.getLayoutParams();
@@ -86,9 +61,6 @@ public class AdvertiseMainFragment extends Fragment {
     }
 
 
-    public void onClick(View view) {
-//        ProductActivity.openActivity(getActivity(), new ProductSummary());
-    }
 
 
 }

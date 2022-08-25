@@ -14,33 +14,26 @@ import io.reactivex.rxjava3.core.Single
 interface IProduct : IRepo<ProductsWrapper> {
 
     fun getProducts(
-        context: Context?,
         mainGroup: Long,
         subGroup: Long,
 
         ): Single<ProductsWrapper>
 
     fun getSpecialProducts(
-        context: Context?,
-
         ): Single<ProductsWrapper>
 
 
     fun getProducts_mainGroups(
-        context: Context?
     ): Single<ProductMainGroupsWrapper>
 
 
     fun getProducts_subGroups(
-        context: Context?,
         mainGroup: Long,
     ): Single<ProductSubGroupsWrapper>
 
 
 
     fun getAdvertises(
-        context: Context?,
-
         ): Single<AdvertisesWrapper>
 
 

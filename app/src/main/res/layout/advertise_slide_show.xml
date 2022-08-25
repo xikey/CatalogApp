@@ -12,28 +12,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="30dp" />
 
 
-    <com.rd.PageIndicatorView
-        android:id="@+id/pageIndicatorView"
+    <com.zikey.android.razancatalogapp.ui.custom_view.Indicator
+        android:id="@+id/indexBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:paddingBottom="10dp"
-        app:piv_animationType="scale"
-        app:piv_dynamicCount="true"
-        app:piv_interactiveAnimation="true"
-        app:piv_selectedColor="@color/color_indicator_grey_unselected"
-        app:piv_unselectedColor="@color/color_indicator_grey_unselected"
-        app:piv_viewPager="@id/pager"
-        attrs:piv_padding="12dp"
-        attrs:piv_radius="8dp" />
+        android:paddingBottom="5dp" />
+
 
 
 </RelativeLayout>

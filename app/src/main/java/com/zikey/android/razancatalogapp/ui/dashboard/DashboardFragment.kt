@@ -66,6 +66,8 @@ class DashboardFragment : Fragment() {
     }
 
     private fun initProductGroupsObserver() {
+        if (viewModel.productGroupDataResponse.hasObservers())
+            return
         viewModel.productGroupDataResponse.observe(
             viewLifecycleOwner,
             Observer { response ->

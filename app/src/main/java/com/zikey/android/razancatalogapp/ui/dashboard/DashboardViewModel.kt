@@ -34,7 +34,7 @@ class DashboardViewModel  @Inject constructor(
     fun getProductMainGroups(context: Context) {
         loading.value = true
         compositeDisposable.add(
-            repository.getProducts_mainGroups(context)
+            repository.getProducts_mainGroups()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<ProductMainGroupsWrapper>() {

@@ -41,32 +41,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"/>
 
-                    <LinearLayout
-                        android:layoutDirection="rtl"
-                        android:gravity="right"
-                        android:background="@drawable/bg_rectangle_home_search"
-                        android:layout_margin="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize">
-
-                        <ImageView
-                            android:scaleType="center"
-                            android:src="@drawable/ic_round_search_24"
-                            android:layout_width="?attr/actionBarSize"
-                            android:layout_height="?attr/actionBarSize"/>
-
-                        <TextView
-                            android:id="@+id/txtSearch"
-                            android:padding="5dp"
-                            android:gravity="center_vertical"
-                            android:textColor="#515257"
-                            android:textSize="@dimen/small_font_size"
-                            android:text="جستجو در میان کالاها"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"/>
-
-                    </LinearLayout>
 
                 </LinearLayout>
 

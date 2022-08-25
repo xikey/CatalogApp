@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.zikey.android.razancatalogapp.model.Advertise
 import com.zikey.android.razancatalogapp.model.Product
 import com.zikey.android.razancatalogapp.model.wrapper.AdvertisesWrapper
+import com.zikey.android.razancatalogapp.model.wrapper.ProductsWrapper
 import com.zikey.android.razancatalogapp.repo.server_repo.ProductServerRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -31,6 +32,9 @@ class HomeViewModel @Inject constructor(
     val advertiseDataResponse = MutableLiveData<AdvertisesWrapper>()
     val advertiseError = MutableLiveData<Boolean>()
 
+    val productDataResponse = MutableLiveData<ProductsWrapper>()
+    val productError = MutableLiveData<Boolean>()
+
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"
@@ -40,10 +44,14 @@ class HomeViewModel @Inject constructor(
 
     val progress: LiveData<Boolean> = loading
 
-    fun getAdvertises(context: Context) {
+    fun getAdvertises() {
+
+        if (advertiseDataResponse.value != null && !advertiseDataResponse.value!!.datas.isNullOrEmpty())
+            return
         loading.value = true
+
         compositeDisposable.add(
-            repository.getAdvertises(context)
+            repository.getAdvertises()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<AdvertisesWrapper>() {
@@ -65,4 +73,35 @@ class HomeViewModel @Inject constructor(
 
 
     }
+
+    fun getProducts() {
+
+        if (productDataResponse.value != null && !productDataResponse.value!!.products.isNullOrEmpty())
+            return
+        loading.value = true
+
+        compositeDisposable.add(
+            repository.getSpecialProducts()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableSingleObserver<ProductsWrapper>() {
+                    override fun onSuccess(value: ProductsWrapper) {
+                        // Update the values with response in the success method.
+                        loading.value = false
+                        productDataResponse.value = value
+                        productError.value = false
+                    }
+
+                    override fun onError(e: Throwable?) {
+                        // Update the values in the response in the error method
+                        loading.value = false
+                        productError.value = true
+                        e!!.printStackTrace()
+                    }
+                })
+        )
+
+
+    }
+
 }

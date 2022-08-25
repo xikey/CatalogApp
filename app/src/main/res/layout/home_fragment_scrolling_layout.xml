@@ -14,6 +14,34 @@
         android:background="@color/white"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layoutDirection="rtl"
+            android:gravity="right"
+            android:background="@drawable/bg_rectangle_home_search"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <ImageView
+                android:scaleType="center"
+                android:src="@drawable/ic_round_search_24"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"/>
+
+            <TextView
+                android:id="@+id/txtSearch"
+                android:padding="5dp"
+                android:gravity="center_vertical"
+                android:textColor="#515257"
+                android:textSize="@dimen/small_font_size"
+                android:text="جستجو در میان کالاها"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+
         <RelativeLayout
             android:id="@+id/rvAdvertiseBox"
             android:layout_width="match_parent"
@@ -33,20 +61,22 @@
 
         <TextView
             android:id="@+id/txtOffers"
-            android:text="پیشنهاد ما"
-            android:textSize="@dimen/normal_font_size"
-            android:textColor="@color/color_text"
-          android:paddingRight="15dp"
-            android:paddingBottom="15dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp"
+            android:text="پیشنهاد ما"
+            android:textColor="@color/color_text"
+            android:textSize="@dimen/normal_font_size" />
 
-        <include layout="@layout/ly_home_my_special_day_products" />
+        <include
+            android:id="@+id/lyTopTen"
+            layout="@layout/ly_home_my_special_day_products" />
 
 
-<View
-    android:layout_width="match_parent"
-    android:layout_height="?actionBarSize"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize" />
 
 
     </LinearLayout>
