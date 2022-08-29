@@ -15,5 +15,7 @@
     <string name="yadegar_phone">013-33691115-7</string>
     <string name="yadegar_fax">013-33691116</string>
     <string name="yadegar_email">info@yadegarpakhsh.com</string>
+    <string name="there_is_no_data">اطلاعاتی جهت نمایش وجود ندارد</string>
+    <string name="search">جستجو</string>
 
 </resources>

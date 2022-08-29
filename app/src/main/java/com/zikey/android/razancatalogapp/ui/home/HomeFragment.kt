@@ -116,33 +116,33 @@ class HomeFragment : Fragment() {
 
 
         rvTopTen.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-
-            }
-
-
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                val pos = rvLayoutManager.findFirstVisibleItemPosition()
 
-                if (pos == 0) {
-                    val originalPos = IntArray(2)
+                try {
+                    val pos = rvLayoutManager.findFirstVisibleItemPosition()
 
-                    recyclerView.getChildAt(pos).getLocationOnScreen(originalPos)
-                    if (firstItemXPositionOnStart == 0) {
-                        firstItemXPositionOnStart = originalPos[0]
-                    }
-                    if (originalPos[0] - firstItemXPositionOnStart >= 0) {
-                        val alpgha: Float =
-                            (originalPos[0] - firstItemXPositionOnStart).toFloat()
-                        Log.e("POSITION", "onScrolled: ${100-alpgha/2}")
-                        binding.lyContent.lyTopTen.lyRightSide.alpha = ((100-alpgha/2)/100)
-                    }
+                    if (pos == 0) {
+                        val originalPos = IntArray(2)
+
+                        recyclerView.getChildAt(pos).getLocationOnScreen(originalPos)
+                        if (firstItemXPositionOnStart == 0) {
+                            firstItemXPositionOnStart = originalPos[0]
+                        }
+                        if (originalPos[0] - firstItemXPositionOnStart >= 0) {
+                            val alpgha: Float =
+                                (originalPos[0] - firstItemXPositionOnStart).toFloat()
+                            Log.e("POSITION", "onScrolled: ${100-alpgha/2}")
+                            binding.lyContent.lyTopTen.lyRightSide.alpha = ((100-alpgha/2)/100)
+                        }
 //                    Log.e("POSITION", "onScrolled: $pos")
 //                    Log.e("dx", "onScrolled: $dx")
 //                    Log.e("posX", "onScrolled: ${originalPos[0]}")
+                    }
+
+                }catch (e:Exception){
+                    e.printStackTrace()
                 }
 
             }

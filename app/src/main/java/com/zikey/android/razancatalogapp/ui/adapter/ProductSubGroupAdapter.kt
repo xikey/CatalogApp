@@ -3,42 +3,40 @@ package com.zikey.android.razancatalogapp.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.razanpardazesh.com.resturantapp.tools.FontChanger
 import com.zikey.android.razancatalogapp.R
 import com.zikey.android.razancatalogapp.core.ImageViewWrapper
-import com.zikey.android.razancatalogapp.databinding.RowProductMainGroupItemBinding
+import com.zikey.android.razancatalogapp.databinding.RowProductSubGroupItemBinding
 import com.zikey.android.razancatalogapp.model.ProductMainGroup
-import com.zikey.android.razancatalogapp.ui.dashboard.DashboardFragmentDirections
+import com.zikey.android.razancatalogapp.model.ProductSubGroup
 
 
-class ProductMainGroupAdapter(private val fragment: Fragment, private val onSelect: OnSelectItem) :
-    ListAdapter<ProductMainGroup, RecyclerView.ViewHolder>(ItemsDiffCallback()) {
-
+class ProductSubGroupAdapter(private val fragment: Fragment, private val onSelect: OnSelectItem) :
+    ListAdapter<ProductSubGroup, RecyclerView.ViewHolder>(ItemsDiffCallback()) {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val plant = getItem(position)
-        (holder as ProductMainGroupViewHolder).bind(plant, position)
+        (holder as ProductSubGroupViewHolder).bind(plant, position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ProductMainGroupViewHolder(
-            RowProductMainGroupItemBinding.inflate(
+        return ProductSubGroupViewHolder(
+            RowProductSubGroupItemBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             ), fragment, onSelect
         )
     }
 
-    class ProductMainGroupViewHolder(
-        private val binding: RowProductMainGroupItemBinding,
+    class ProductSubGroupViewHolder(
+        private val binding: RowProductSubGroupItemBinding,
         private val fragment: Fragment,
         private val onSelectListener: OnSelectItem
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: ProductMainGroup, position: Int) {
+        fun bind(item: ProductSubGroup, position: Int) {
             binding.apply {
 
                 FontChanger().applyMainFont(txtName)
@@ -48,16 +46,9 @@ class ProductMainGroupAdapter(private val fragment: Fragment, private val onSele
 
                     txtName.setText(item.name)
 
-                    crdRoot.setOnClickListener {
-
-                        fragment.findNavController().navigate(
-                            DashboardFragmentDirections.actionNavigationDashboardToProductSubGroupFragment(
-                                item.name!!, item.id!!
-                            )
-                        )
-
+                    crdContent.setOnClickListener {
+              onSelectListener.onSelect(item)
                     }
-
 
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -68,21 +59,18 @@ class ProductMainGroupAdapter(private val fragment: Fragment, private val onSele
     }
 
     public interface OnSelectItem {
-        fun onSelect(item: ProductMainGroup)
+        fun onSelect(item: ProductSubGroup)
     }
 
-    private class ItemsDiffCallback : DiffUtil.ItemCallback<ProductMainGroup>() {
+    private class ItemsDiffCallback : DiffUtil.ItemCallback<ProductSubGroup>() {
 
-        override fun areItemsTheSame(
-            oldItem: ProductMainGroup,
-            newItem: ProductMainGroup
-        ): Boolean {
+        override fun areItemsTheSame(oldItem: ProductSubGroup, newItem: ProductSubGroup): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: ProductMainGroup,
-            newItem: ProductMainGroup
+            oldItem: ProductSubGroup,
+            newItem: ProductSubGroup
         ): Boolean {
             return oldItem == newItem
         }

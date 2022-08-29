@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+  android:layoutDirection="rtl"
+    android:id="@+id/lyContent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.products.ProductsFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:id="@+id/toolbar"
+            app:titleTextColor="@color/black"
+            app:navigationIcon="@drawable/ic_round_arrow_forward_24"
+            app:subtitle="1"
+            app:subtitleTextColor="@color/black"
+            app:title="محصولات"
+            app:menu="@menu/menu_search"
+            android:background="@color/white"
+            android:layout_height="?actionBarSize"
+            android:elevation="2dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvProducts"
+            android:layout_below="@id/toolbar"
+            android:background="@color/color_gray_recycler"
+            android:layout_width="match_parent"
+            android:paddingBottom="80dp"
+            android:clipToPadding="false"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:gravity="center"
+            android:layout_below="@id/toolbar"
+            android:textSize="@dimen/small_font_size"
+            android:text="@string/there_is_no_data"
+            android:id="@+id/txtEmptyRows"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <include  android:id="@+id/lyProgress"  layout="@layout/layout_progress_match_parent_with_title" />
+
+    </RelativeLayout>
+
+
+</FrameLayout>

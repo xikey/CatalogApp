@@ -14,11 +14,65 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.zikey.android.razancatalogapp.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_productSubGroupFragment"
+            app:destination="@id/productSubGroupFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_about_us"
         android:name="com.zikey.android.razancatalogapp.ui.about_us.AboutUsFragment"
         android:label="@string/title_about_us"
         tools:layout="@layout/fragment_about_us" />
+
+    <fragment
+        android:id="@+id/productSubGroupFragment"
+        android:name="com.zikey.android.razancatalogapp.ui.product_sub_group.ProductSubGroupFragment"
+        android:label="fragment_product_sub_group"
+        tools:layout="@layout/fragment_product_sub_group" >
+
+        <argument
+            android:name="mainGroupId"
+            app:argType="long"
+            android:defaultValue="0L" />
+
+        <argument
+            android:name="mainGroupName"
+            app:argType="string"/>
+
+        <action
+            android:id="@+id/action_productSubGroupFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+        <action
+            android:id="@+id/action_productSubGroupFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.zikey.android.razancatalogapp.ui.products.ProductsFragment"
+        android:label="fragment_products"
+        tools:layout="@layout/fragment_products" >
+
+        <argument
+            android:name="mainGroupId"
+            app:argType="long"
+            android:defaultValue="0L" />
+
+        <argument
+            android:name="subGroupId"
+            app:argType="long"
+            android:defaultValue="0L" />
+
+        <argument
+            android:name="subGroupName"
+            app:argType="string"/>
+
+        <action
+            app:popUpTo="@id/productSubGroupFragment"
+            android:id="@+id/action_dismiss" />
+    </fragment>
+
+
 </navigation>

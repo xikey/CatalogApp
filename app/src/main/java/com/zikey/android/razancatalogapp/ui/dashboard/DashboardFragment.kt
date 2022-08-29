@@ -10,7 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.razanpardazesh.com.resturantapp.tools.FontChanger
+import com.zikey.android.razancatalogapp.R
 import com.zikey.android.razancatalogapp.databinding.FragmentDashboardBinding
 import com.zikey.android.razancatalogapp.model.ProductMainGroup
 import com.zikey.android.razancatalogapp.ui.adapter.ProductMainGroupAdapter
@@ -34,6 +36,9 @@ class DashboardFragment : Fragment() {
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
+        navBar.visibility=View.VISIBLE
 
         return root
     }
@@ -66,6 +71,7 @@ class DashboardFragment : Fragment() {
     }
 
     private fun initProductGroupsObserver() {
+
         if (viewModel.productGroupDataResponse.hasObservers())
             return
         viewModel.productGroupDataResponse.observe(

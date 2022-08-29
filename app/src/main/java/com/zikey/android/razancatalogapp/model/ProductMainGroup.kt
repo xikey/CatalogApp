@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ProductMainGroup(
 
-    @SerializedName("i") val id: Int?,
+    @SerializedName("i") val id: Long?,
     @SerializedName("n") var name: String?,
     @SerializedName("s") var subGroups: List<ProductSubGroup>?,
     @SerializedName("iu") val imageURL1: String?,
