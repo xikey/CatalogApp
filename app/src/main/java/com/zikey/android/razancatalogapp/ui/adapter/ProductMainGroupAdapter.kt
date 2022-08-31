@@ -1,7 +1,9 @@
 package com.zikey.android.razancatalogapp.ui.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
@@ -9,7 +11,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.razanpardazesh.com.resturantapp.tools.FontChanger
 import com.zikey.android.razancatalogapp.R
+import com.zikey.android.razancatalogapp.core.Convertor
 import com.zikey.android.razancatalogapp.core.ImageViewWrapper
+import com.zikey.android.razancatalogapp.core.ScreenSize
 import com.zikey.android.razancatalogapp.databinding.RowProductMainGroupItemBinding
 import com.zikey.android.razancatalogapp.model.ProductMainGroup
 import com.zikey.android.razancatalogapp.ui.dashboard.DashboardFragmentDirections
@@ -41,8 +45,27 @@ class ProductMainGroupAdapter(private val fragment: Fragment, private val onSele
         fun bind(item: ProductMainGroup, position: Int) {
             binding.apply {
 
+                val box: View = binding.crdRoot
+                val width = ScreenSize.width
+                val height = (width / 3) * 2
+                val params = box.layoutParams
+                params.height = height
+
+                box.layoutParams = params
+
+
+                var boxWidth = width / 2
+                boxWidth -= Convertor.toPixcel(60f, fragment.requireContext())
+                val imageBox: View = binding.imgWallpaper
+                val imageParams = imageBox.layoutParams
+                imageParams.height = boxWidth
+                imageParams.width = boxWidth
+
+                imageBox.layoutParams = imageParams
+
+
                 FontChanger().applyMainFont(txtName)
-                ImageViewWrapper(fragment.requireContext()).FromUrl(item.imageURL1)
+                ImageViewWrapper(fragment.requireContext()).FromUrl(item.imageURL2)
                     .into(imgWallpaper).defaultImage(R.drawable.img_yadegar_loader).load()
                 try {
 
@@ -63,8 +86,11 @@ class ProductMainGroupAdapter(private val fragment: Fragment, private val onSele
                     e.printStackTrace()
                 }
 
+
             }
         }
+
+
     }
 
     public interface OnSelectItem {

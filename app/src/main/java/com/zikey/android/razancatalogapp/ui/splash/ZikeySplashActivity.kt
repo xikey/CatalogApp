@@ -18,6 +18,7 @@ import com.zikey.android.razancatalogapp.databinding.FragmentHomeBinding
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import com.zikey.android.razancatalogapp.MainActivity
+import com.zikey.android.razancatalogapp.core.ScreenSize
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
@@ -55,12 +56,22 @@ class ZikeySplashActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-      initAnimation()
+        initScreenSize()
+        initAnimation()
         runHandler()
         fadeInImageAnimator()
         fadeOutImageAnimator()
         slideInEnglishTitle()
         slideInPersianTitle()
+    }
+
+    private fun initScreenSize() {
+
+        val width = resources.displayMetrics.widthPixels
+        val height = resources.displayMetrics.heightPixels
+
+        ScreenSize.setScreenSize(width, height)
+
     }
 
     //جهت تعیین زمان نمایش صفحه خوشامدگویی
@@ -189,7 +200,8 @@ class ZikeySplashActivity : AppCompatActivity() {
             override fun onAnimationEnd(p0: Animation?) {
                 CoroutineScope(Main).launch {
                     MainActivity.start(this@ZikeySplashActivity)
-                    finish()  }
+                    finish()
+                }
 
             }
 

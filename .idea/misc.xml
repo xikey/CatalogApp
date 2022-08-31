@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/drawable-v24/ic_round_search_white_24.xml" value="0.216" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/drawable/bg_btn_accent.xml" value="0.1535" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/drawable/bg_btn_primary.xml" value="0.1535" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/drawable/bg_circle_gray.xml" value="0.1" />
@@ -17,16 +18,20 @@
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/drawable/ic_arrow_forward_white_24dp.xml" value="0.1535" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/drawable/ic_baseline_phone_enabled_16_about_us.xml" value="0.1535" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/drawable/ic_outline_create_24.xml" value="0.1535" />
+        <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/drawable/ic_round_arrow_forward_24.xml" value="0.216" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/drawable/ic_round_location_on_primary_16.xml" value="0.1535" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/drawable/ic_round_print_16_about_us.xml" value="0.1535" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/drawable/ic_round_search_24.xml" value="0.1535" />
+        <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/drawable/ic_round_search_white_24.xml" value="0.216" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/drawable/white_primary_animation.xml" value="0.1535" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/activity_main.xml" value="0.27291666666666664" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/activity_zikey_splash.xml" value="0.20833333333333334" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/advertise_slide_show.xml" value="0.20833333333333334" />
+        <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/content_product.xml" value="0.27291666666666664" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/custom_alert_dialog.xml" value="0.171875" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/fragment_about_us.xml" value="0.25" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/fragment_advertise_slider.xml" value="0.14583333333333334" />
+        <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/fragment_catalog.xml" value="0.27291666666666664" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.16" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/fragment_home.xml" value="0.12" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/fragment_product_sub_group.xml" value="0.22" />
@@ -38,8 +43,9 @@
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/layout_progress_match_parent_with_title.xml" value="0.25" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/layout_progress_match_parent_with_title_primary_shadow.xml" value="0.1265625" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/ly_home_my_special_day_products.xml" value="0.20833333333333334" />
+        <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/row_catalog_image_item.xml" value="0.27291666666666664" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/row_home_product.xml" value="0.2" />
-        <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/row_product_main_group_item.xml" value="0.1921875" />
+        <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/row_product_main_group_item.xml" value="0.25" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/row_product_sub_group_item.xml" value="0.17864583333333334" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/layout/row_products_item.xml" value="0.18229166666666666" />
         <entry key="..\:/workstation/Android/RazanCatalogApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.12552083333333333" />

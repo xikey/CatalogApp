@@ -7,6 +7,7 @@
     android:clickable="true"
     android:clipToPadding="false"
     android:elevation="2dp"
+    android:id="@+id/crdContent"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:layoutDirection="rtl"
@@ -26,20 +27,19 @@
             android:layoutDirection="rtl"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:background="#f6f6f6"
-                android:layout_width="match_parent"
-                android:layout_margin="15dp"
-                android:layout_height="150dp">
+
 
                 <ImageView
+                    android:layout_gravity="center_horizontal"
                     android:id="@+id/imgWallpaper"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:background="#f6f6f6"
+                    android:layout_margin="15dp"
+                    android:layout_height="150dp"
+                    android:layout_width="match_parent" />
 
 
 
-            </RelativeLayout>
+
 
             <LinearLayout
                 android:layout_alignParentBottom="true"

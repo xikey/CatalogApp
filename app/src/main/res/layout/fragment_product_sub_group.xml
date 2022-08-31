@@ -15,13 +15,13 @@
       <com.google.android.material.appbar.MaterialToolbar
           android:layout_width="match_parent"
           android:id="@+id/toolbar"
-          app:titleTextColor="@color/black"
-          app:navigationIcon="@drawable/ic_round_arrow_forward_24"
+          app:titleTextColor="@color/white"
+          app:navigationIcon="@drawable/ic_arrow_forward_white_24dp"
           app:subtitle="1"
-          app:subtitleTextColor="@color/black"
+          app:subtitleTextColor="@color/white"
           app:title="گروه فرعی کالا"
           app:menu="@menu/menu_search"
-          android:background="@color/white"
+          android:background="@color/colorPrimary"
           android:layout_height="?actionBarSize"
           android:elevation="2dp" />
 

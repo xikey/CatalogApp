@@ -35,6 +35,7 @@ class ProductsFragment : Fragment() {
     private var subGroupID: Long? = null
     private var subName: String? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -91,7 +92,6 @@ class ProductsFragment : Fragment() {
     }
 
 
-
     private fun initToolbar() {
 
         val toolbar = binding.toolbar
@@ -119,7 +119,22 @@ class ProductsFragment : Fragment() {
         if (productsAdapter == null)
             productsAdapter =
                 ProductsAdapter(this, object : ProductsAdapter.OnSelectItem {
-                    override fun onSelect(item: Product) {
+                    override fun onSelect(item: Product, position: Int) {
+
+                        if (viewModel.productsResponse.value != null) {
+                            CatalogFragment.newInstance(
+                                requireActivity().supportFragmentManager,
+                                viewModel.productsResponse.value!!.products,
+                                position,
+                                object:CatalogFragment.ScrollListener{
+                                    override fun onScroll(position: Int) {
+                                        rvGroups?.scrollToPosition(position)
+                                    }
+
+                                }
+                            )
+                        }
+
 
                     }
 
@@ -145,6 +160,7 @@ class ProductsFragment : Fragment() {
                     if (!response.products.isNullOrEmpty()) {
                         binding.txtEmptyRows.visibility = View.GONE
                         productsAdapter!!.submitList(response.products)
+
                     } else {
                         binding.txtEmptyRows.visibility = View.VISIBLE
                     }

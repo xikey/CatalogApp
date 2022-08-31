@@ -81,6 +81,7 @@ class DashboardFragment : Fragment() {
 
                     if (!response.list.isNullOrEmpty()) {
                         productGroupsAdapter!!.submitList(response.list)
+
                     } else {
 
                     }
@@ -118,6 +119,7 @@ class DashboardFragment : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = productGroupsAdapter
         }
+        productGroupsAdapter!!.submitList(null)
 
 
     }

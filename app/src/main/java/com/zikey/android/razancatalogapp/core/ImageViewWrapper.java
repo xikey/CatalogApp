@@ -58,6 +58,17 @@ public class ImageViewWrapper {
 
     }
 
+    public void loadCenterInside() {
+
+        Glide.with(context)
+                .load(url)
+                .centerInside()
+                .placeholder(placeHolder)
+                .error(placeHolder)
+                .into(imgView);
+
+    }
+
     public void loadFromDrowable(int drowable) {
 
         Glide.with(context).load(drowable).centerCrop().into(imgView);

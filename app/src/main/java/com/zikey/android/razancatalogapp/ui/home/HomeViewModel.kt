@@ -52,7 +52,7 @@ class HomeViewModel @Inject constructor(
 
         compositeDisposable.add(
             repository.getAdvertises()
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<AdvertisesWrapper>() {
                     override fun onSuccess(value: AdvertisesWrapper) {
@@ -82,7 +82,7 @@ class HomeViewModel @Inject constructor(
 
         compositeDisposable.add(
             repository.getSpecialProducts()
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<ProductsWrapper>() {
                     override fun onSuccess(value: ProductsWrapper) {

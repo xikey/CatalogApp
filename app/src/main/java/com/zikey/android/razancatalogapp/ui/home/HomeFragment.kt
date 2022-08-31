@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.razanpardazesh.com.resturantapp.tools.FontChanger
+import com.zikey.android.razancatalogapp.core.ScreenSize
 import com.zikey.android.razancatalogapp.databinding.FragmentHomeBinding
 import com.zikey.android.razancatalogapp.model.Advertise
 import com.zikey.android.razancatalogapp.model.Product
@@ -34,6 +35,7 @@ class HomeFragment : Fragment() {
     private var topTenAdapter: MainTopTenAdapter? = null
     private var slideChanger: Runnable? = null
     var firstItemXPositionOnStart: Int = 0
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -63,13 +65,26 @@ class HomeFragment : Fragment() {
         initFonts()
         initProgress()
         initRecycleView()
+        initTopTenSize()
         initAdvertiseObservers()
         initProductsObserver()
         getData()
 
     }
 
+    private fun initTopTenSize() {
+
+        val box: View = binding.lyContent.lyTopTen.lyShortcuts
+        val width = ScreenSize.width
+        val height = (width / 3) * 2
+        val params = box.layoutParams
+        params.height = height
+
+        box.layoutParams = params
+    }
+
     private fun initProductsObserver() {
+
         if (viewModel.productDataResponse.hasObservers())
             return
 
@@ -133,15 +148,16 @@ class HomeFragment : Fragment() {
                         if (originalPos[0] - firstItemXPositionOnStart >= 0) {
                             val alpgha: Float =
                                 (originalPos[0] - firstItemXPositionOnStart).toFloat()
-                            Log.e("POSITION", "onScrolled: ${100-alpgha/2}")
-                            binding.lyContent.lyTopTen.lyRightSide.alpha = ((100-alpgha/2)/100)
+                            Log.e("POSITION", "onScrolled: ${100 - alpgha / 2}")
+                            binding.lyContent.lyTopTen.lyRightSide.alpha =
+                                ((100 - alpgha / 2) / 100)
                         }
 //                    Log.e("POSITION", "onScrolled: $pos")
 //                    Log.e("dx", "onScrolled: $dx")
 //                    Log.e("posX", "onScrolled: ${originalPos[0]}")
                     }
 
-                }catch (e:Exception){
+                } catch (e: Exception) {
                     e.printStackTrace()
                 }
 
@@ -152,9 +168,11 @@ class HomeFragment : Fragment() {
 
 
     private fun initAdvertiseView(count: Int, advertises: List<Advertise>) {
+        if (_binding == null)
+            return
 
         val advertiseHeaderBox: View = binding.lyContent.rvAdvertiseBox
-        val width = resources.displayMetrics.widthPixels
+        val width = ScreenSize.width
         val height = (width / 3) * 2
         val params = advertiseHeaderBox.layoutParams
         params.height = height
@@ -203,6 +221,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getData() {
+
 
         viewModel.getAdvertises()
         viewModel.getProducts()
