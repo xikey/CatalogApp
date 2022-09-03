@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/lyContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layoutDirection="rtl"
-    tools:context=".ui.products.ProductsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.search.SearchFragment">
 
 
     <RelativeLayout
@@ -14,39 +14,37 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:background="@color/colorPrimary"
-            android:elevation="2dp"
-            app:menu="@menu/menu_search"
+            android:id="@+id/toolbar"
+            app:titleTextColor="@color/white"
             app:navigationIcon="@drawable/ic_arrow_forward_white_24dp"
-            app:subtitle="1"
             app:subtitleTextColor="@color/white"
-            app:title="محصولات"
-            app:titleTextColor="@color/white" />
+            app:title="جستجو"
+            app:menu="@menu/menu_search"
+            android:background="@color/colorPrimary"
+            android:layout_height="?actionBarSize"
+            android:elevation="2dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvProducts"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:layout_below="@id/toolbar"
             android:background="@color/color_gray_recycler"
+            android:layout_width="match_parent"
+            android:paddingBottom="80dp"
             android:clipToPadding="false"
-            android:paddingBottom="80dp" />
+            android:layout_height="match_parent"/>
 
         <TextView
-            android:id="@+id/txtEmptyRows"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/toolbar"
-            android:layout_centerInParent="true"
             android:gravity="center"
+            android:layout_below="@id/toolbar"
+            android:textSize="@dimen/small_font_size"
             android:text="@string/there_is_no_data"
-            android:textSize="@dimen/small_font_size" />
+            android:id="@+id/txtEmptyRows"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-        <include
-            android:id="@+id/lyProgress"
+        <include  android:id="@+id/lyProgress"
             layout="@layout/layout_progress_match_parent_with_title" />
 
     </RelativeLayout>

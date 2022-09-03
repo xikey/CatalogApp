@@ -63,9 +63,9 @@ class ProductMainGroupAdapter(private val fragment: Fragment, private val onSele
 
                 imageBox.layoutParams = imageParams
 
-
-                FontChanger().applyMainFont(txtName)
-                ImageViewWrapper(fragment.requireContext()).FromUrl(item.imageURL2)
+                FontChanger().applyNumberFont(crdRoot)
+                FontChanger().applyTitleFont(txtName)
+                ImageViewWrapper(fragment.requireContext()).FromUrl(item.imageURL1)
                     .into(imgWallpaper).defaultImage(R.drawable.img_yadegar_loader).load()
                 try {
 
@@ -80,6 +80,9 @@ class ProductMainGroupAdapter(private val fragment: Fragment, private val onSele
                         )
 
                     }
+
+                    txtSubCount.setText("${item.subGroupsCount} گروه فرعی ")
+                    txtProductCount.setText("${item.productsCount} کالا ")
 
 
                 } catch (e: Exception) {

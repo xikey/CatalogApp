@@ -1,5 +1,7 @@
 package com.zikey.android.razancatalogapp.ui.about_us
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -40,6 +42,16 @@ class AboutUsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         FontChanger().applyMainFont(binding.root)
         FontChanger().applyTitleFont(binding.lyDetail)
+
+        binding.crdShowMap.setOnClickListener {
+
+            // Create a Uri from an intent string. Use the result to create an Intent.
+            val gmmIntentUri = Uri.parse("geo:37.180934,49.660870?q=37.180934,49.660870(yadegar)")
+            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+            mapIntent.setPackage("com.google.android.apps.maps")
+
+            startActivity(mapIntent)
+        }
     }
 
     override fun onDestroyView() {

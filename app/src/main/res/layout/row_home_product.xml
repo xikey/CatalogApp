@@ -46,11 +46,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:gravity="right"
-                    android:maxLines="2"
+                    android:gravity="center"
+                    android:maxLines="3"
                     android:padding="5dp"
                     android:textColor="@color/black"
-                    android:textSize="13sp" />
+                    android:textSize="@dimen/small_font_size" />
 
                 <LinearLayout
                     android:id="@+id/lyBottom"
@@ -69,12 +69,15 @@
                         android:background="@color/black_alpha_30" />
 
                     <LinearLayout
+                        android:alpha="0.3"
+                        android:background="@color/colorPrimary"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:visibility="gone"
                             android:id="@+id/btnAdd"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
@@ -84,6 +87,7 @@
                             android:focusable="true"/>
 
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/txtCounter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -95,6 +99,7 @@
                             android:textSize="@dimen/normal_font_size" />
 
                         <ImageView
+                            android:visibility="gone"
                             android:id="@+id/btnMines"
                             android:layout_width="35dp"
                             android:padding="5dp"

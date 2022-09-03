@@ -10,7 +10,7 @@ import com.zikey.android.razancatalogapp.repo.iRepo.IProduct
 import com.zikey.android.razancatalogapp.repo.retroCalls.IProductApi
 import io.reactivex.rxjava3.core.Single
 
-class ProductServerRepo :IProduct{
+class ProductServerRepo : IProduct {
 
     override fun getProducts(
         mainGroup: Long,
@@ -23,14 +23,14 @@ class ProductServerRepo :IProduct{
 
     override fun getSpecialProducts(
 
-        ): Single<ProductsWrapper> {
+    ): Single<ProductsWrapper> {
         val api = ServerApiClient.getClientWithHeader()!!.create(IProductApi::class.java)
         return api.specialProducts()
     }
 
 
     override fun getProducts_mainGroups(
-        ): Single<ProductMainGroupsWrapper> {
+    ): Single<ProductMainGroupsWrapper> {
         val api = ServerApiClient.getClientWithHeader()!!.create(IProductApi::class.java)
         return api.getProducts_mainGroups()
     }
@@ -45,10 +45,17 @@ class ProductServerRepo :IProduct{
 
     override fun getAdvertises(
 
-        ): Single<AdvertisesWrapper> {
+    ): Single<AdvertisesWrapper> {
         val api = ServerApiClient.getClientWithHeader()!!.create(IProductApi::class.java)
         return api.advertises()
     }
 
+
+    override fun searchProducts(
+        keySearch: String,
+    ): Single<ProductsWrapper> {
+        val api = ServerApiClient.getClientWithHeader()!!.create(IProductApi::class.java)
+        return api.searchProducts(keySearch)
+    }
 
 }

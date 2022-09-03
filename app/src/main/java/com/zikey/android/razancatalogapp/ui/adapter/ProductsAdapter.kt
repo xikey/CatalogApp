@@ -64,7 +64,7 @@ class ProductsAdapter(private val fragment: Fragment, private val onSelect: OnSe
 
 
                 FontChanger().applyMainFont(txtName)
-                ImageViewWrapper(fragment.requireContext()).FromUrl(item.imageLargeUrl)
+                ImageViewWrapper(fragment.requireContext()).FromUrl(item.imageUrl)
                     .into(imgWallpaper).defaultImage(R.drawable.img_yadegar_loader).load()
                 try {
 

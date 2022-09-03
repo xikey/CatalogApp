@@ -1,66 +1,55 @@
-package com.zikey.android.razancatalogapp.ui.products
+package com.zikey.android.razancatalogapp.ui.search
 
+import android.content.Context
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.View
+import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.razanpardazesh.com.resturantapp.tools.FontChanger
 import com.zikey.android.razancatalogapp.R
-import com.zikey.android.razancatalogapp.databinding.FragmentProductsBinding
+import com.zikey.android.razancatalogapp.databinding.FragmentSearchBinding
 import com.zikey.android.razancatalogapp.model.Product
-import com.zikey.android.razancatalogapp.model.ProductSubGroup
-import com.zikey.android.razancatalogapp.ui.adapter.ProductSubGroupAdapter
 import com.zikey.android.razancatalogapp.ui.adapter.ProductsAdapter
-import com.zikey.android.razancatalogapp.ui.product_sub_group.ProductSubGroupFragmentArgs
-import com.zikey.android.razancatalogapp.ui.product_sub_group.ProductSubGroupFragmentDirections
-import com.zikey.android.razancatalogapp.ui.product_sub_group.ProductSubGroupViewModel
+import com.zikey.android.razancatalogapp.ui.products.CatalogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
-
 @AndroidEntryPoint
-class ProductsFragment : Fragment() {
+class SearchFragment : Fragment() {
 
-    private val viewModel: ProductsViewModel by viewModels()
+    private val viewModel: SearchViewModel by viewModels()
 
-    private var _binding: FragmentProductsBinding? = null
+    private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
     private var rvGroups: RecyclerView? = null
     private var productsAdapter: ProductsAdapter? = null
-    private var mainGroupID: Long? = null
-    private var subGroupID: Long? = null
-    private var productCount: Long? = null
-    private var subName: String? = null
-    private var data: ArrayList<Product>? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val args: ProductsFragmentArgs by navArgs()
-        mainGroupID = args.mainGroupId
-        subGroupID = args.subGroupId
-        subName = args.subGroupName
-        productCount = args.productCount
-    }
+    private var keySearch = ""
+    private lateinit var searchView: androidx.appcompat.widget.SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentProductsBinding.inflate(inflater, container, false)
-
+    ): View? {
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        hideBottomNavigation()
         return binding.root
     }
 
     override fun onDestroy() {
 
         _binding = null
+        showBottomNavigation()
         super.onDestroy()
     }
 
@@ -70,7 +59,6 @@ class ProductsFragment : Fragment() {
         FontChanger().applyMainFont(binding.rvProducts)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         initProgress()
@@ -78,7 +66,6 @@ class ProductsFragment : Fragment() {
         initToolbar()
         initRecycleView()
         initProductGroupsObserver()
-        getData()
 
     }
 
@@ -95,29 +82,56 @@ class ProductsFragment : Fragment() {
 
     }
 
+    private fun hideBottomNavigation() {
+
+        val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
+        navBar.visibility = View.GONE
+
+    }
+
+    private fun showBottomNavigation() {
+
+        val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
+        navBar.visibility = View.VISIBLE
+
+    }
 
     private fun initToolbar() {
 
         val toolbar = binding.toolbar
 
-        toolbar.setSubtitle("$subName - $productCount کالا")
         toolbar.setNavigationOnClickListener {
             findNavController().navigate(
-                ProductsFragmentDirections.actionDismiss()
+                SearchFragmentDirections.actionDismiss()
             )
 
         }
         val menu: Menu = toolbar.menu
 
-        val searchView =
+
+        searchView =
             menu.findItem(R.id.menu_search).actionView as androidx.appcompat.widget.SearchView
+        menu.performIdentifierAction(R.id.menu_search, 0)
 
 
         if (searchView != null) {
-            searchView.queryHint = "جستجو"
+            searchView.queryHint = "جستجو کالا"
             searchView.setQuery("", true)
             searchView.isIconified = false
         }
+
+
+        searchView.requestFocus()
+
+
+
+        searchView.setOnQueryTextFocusChangeListener { p0, hasFocus ->
+            if (hasFocus) {
+                showKeyboard(p0!!.findFocus());
+            }
+        }
+
+
 
         searchView.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
@@ -138,18 +152,13 @@ class ProductsFragment : Fragment() {
                     object : TimerTask() {
 
                         override fun run() {
-                            if (data.isNullOrEmpty())
-                                return
                             if (newText != null) {
-                                productsAdapter?.submitList(data!!.filter {
-                                    it.name!!.contains(
-                                        newText
-                                    )
-                                })
+                                keySearch = newText
                             } else {
-                                productsAdapter?.submitList(data)
+                                keySearch = ""
                             }
 
+                            viewModel.getProducts(keySearch)
 
                         }
                     },
@@ -160,7 +169,33 @@ class ProductsFragment : Fragment() {
                 return true
             }
 
-        })    }
+        })
+
+    }
+
+    private fun showKeyboard(view: View) {
+        try {
+            val imm =
+                requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+    }
+
+    private fun hideKeyboard() {
+
+        try {
+            val imm =
+                requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(searchView.windowToken,0)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+    }
+
 
     private fun initRecycleView() {
 
@@ -174,7 +209,7 @@ class ProductsFragment : Fragment() {
                                 requireActivity().supportFragmentManager,
                                 viewModel.productsResponse.value!!.products,
                                 position,
-                                object:CatalogFragment.ScrollListener{
+                                object : CatalogFragment.ScrollListener {
                                     override fun onScroll(position: Int) {
                                         rvGroups?.scrollToPosition(position)
                                     }
@@ -206,11 +241,12 @@ class ProductsFragment : Fragment() {
                 response?.let {
 
                     if (!response.products.isNullOrEmpty()) {
+                        // productsAdapter!!.submitList(null)
                         binding.txtEmptyRows.visibility = View.GONE
                         productsAdapter!!.submitList(response.products)
-                        data = response.products as ArrayList<Product>
 
                     } else {
+                        productsAdapter!!.submitList(null)
                         binding.txtEmptyRows.visibility = View.VISIBLE
                     }
 
@@ -221,7 +257,9 @@ class ProductsFragment : Fragment() {
             viewLifecycleOwner,
             Observer { dataError ->
                 dataError?.let {
+
                     if (dataError) {
+                        productsAdapter!!.submitList(null)
                         binding.txtEmptyRows.visibility = View.VISIBLE
                     }
 
@@ -229,9 +267,11 @@ class ProductsFragment : Fragment() {
             })
     }
 
-    private fun getData() {
+    override fun onDestroyView() {
+        super.onDestroyView()
 
-        mainGroupID?.let { subGroupID?.let { it1 -> viewModel.getProducts(it, it1) } }
+        searchView.setOnQueryTextFocusChangeListener(null)
+        hideKeyboard()
     }
 
 

@@ -17,6 +17,7 @@
         <LinearLayout
             android:layoutDirection="rtl"
             android:gravity="right"
+            android:id="@+id/lySearch"
             android:background="@drawable/bg_rectangle_home_search"
             android:layout_margin="10dp"
             android:layout_width="match_parent"

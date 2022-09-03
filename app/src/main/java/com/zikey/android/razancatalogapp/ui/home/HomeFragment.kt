@@ -3,7 +3,6 @@ package com.zikey.android.razancatalogapp.ui.home
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -22,6 +22,7 @@ import com.zikey.android.razancatalogapp.model.Product
 import com.zikey.android.razancatalogapp.ui.adapter.MainAdvertisePagerAdapter
 import com.zikey.android.razancatalogapp.ui.adapter.MainTopTenAdapter
 import com.zikey.android.razancatalogapp.ui.custom_view.Indicator
+import com.zikey.android.razancatalogapp.ui.products.CatalogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Runnable
 
@@ -65,10 +66,21 @@ class HomeFragment : Fragment() {
         initFonts()
         initProgress()
         initRecycleView()
+        initClickListeners()
         initTopTenSize()
         initAdvertiseObservers()
         initProductsObserver()
         getData()
+
+    }
+
+    private fun initClickListeners() {
+
+        binding.lyContent.lySearch.setOnClickListener {
+            findNavController().navigate(
+                HomeFragmentDirections.actionNavigationHomeToSearchFragment()
+            )
+        }
 
     }
 
@@ -116,10 +128,18 @@ class HomeFragment : Fragment() {
 
         if (topTenAdapter == null)
             topTenAdapter = MainTopTenAdapter(this, object : MainTopTenAdapter.OnSelectItem {
-                override fun onSelect(item: Product) {
+                override fun onSelect(item: Product, position: Int) {
 
+                    CatalogFragment.newInstance(requireActivity().supportFragmentManager,
+                        viewModel.productDataResponse.value?.products,position,object:CatalogFragment.ScrollListener{
+                        override fun onScroll(position: Int) {
+
+                        }
+
+                    })
 
                 }
+
 
             })
         val rvLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
@@ -148,7 +168,7 @@ class HomeFragment : Fragment() {
                         if (originalPos[0] - firstItemXPositionOnStart >= 0) {
                             val alpgha: Float =
                                 (originalPos[0] - firstItemXPositionOnStart).toFloat()
-                            Log.e("POSITION", "onScrolled: ${100 - alpgha / 2}")
+                           // Log.e("POSITION", "onScrolled: ${100 - alpgha / 2}")
                             binding.lyContent.lyTopTen.lyRightSide.alpha =
                                 ((100 - alpgha / 2) / 100)
                         }

@@ -19,6 +19,7 @@ import com.zikey.android.razancatalogapp.model.ProductSubGroup
 import com.zikey.android.razancatalogapp.ui.adapter.ProductSubGroupAdapter
 import com.zikey.android.razancatalogapp.ui.products.ProductsFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 
 @AndroidEntryPoint
@@ -30,6 +31,7 @@ class ProductSubGroupFragment : Fragment() {
     private var productGroupsAdapter: ProductSubGroupAdapter? = null
     private var mainGroupID: Long? = null
     private var mainGroupName: String? = null
+    private var data: ArrayList<ProductSubGroup>? = null
 
 
     private val viewModel: ProductSubGroupViewModel by viewModels()
@@ -74,7 +76,7 @@ class ProductSubGroupFragment : Fragment() {
     private fun hideBottomNavigation() {
 
         val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
-        navBar.visibility=View.GONE
+        navBar.visibility = View.GONE
 
     }
 
@@ -86,17 +88,63 @@ class ProductSubGroupFragment : Fragment() {
             findNavController().navigate(
                 ProductSubGroupFragmentDirections.actionProductSubGroupFragmentToNavigationDashboard()
             )
-
         }
+
         val menu: Menu = toolbar.menu
-        menu.findItem(R.id.menu_search)
-            .setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
-                override fun onMenuItemClick(p0: MenuItem?): Boolean {
+        val searchView =
+            menu.findItem(R.id.menu_search).actionView as androidx.appcompat.widget.SearchView
 
-                    return true
-                }
 
-            })
+        if (searchView != null) {
+            searchView.queryHint = "جستجو"
+            searchView.setQuery("", true)
+            searchView.isIconified = false
+        }
+
+        searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+
+            private var timer: Timer = Timer()
+            private val DELAY: Long = 1000 // Milliseconds
+
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                timer.cancel()
+                timer = Timer()
+                timer.schedule(
+                    object : TimerTask() {
+
+                        override fun run() {
+                            if (data.isNullOrEmpty())
+                                return
+                            if (newText != null) {
+                                productGroupsAdapter?.submitList(data!!.filter {
+                                    it.name!!.contains(
+                                        newText
+                                    )
+                                })
+                            } else {
+                                productGroupsAdapter?.submitList(data)
+                            }
+
+
+                        }
+                    },
+                    DELAY
+                )
+
+
+                return true
+            }
+
+        })
+
+
     }
 
     private fun initFont() {
@@ -126,7 +174,7 @@ class ProductSubGroupFragment : Fragment() {
                     override fun onSelect(item: ProductSubGroup) {
                         findNavController().navigate(
                             ProductSubGroupFragmentDirections.actionProductSubGroupFragmentToProductsFragment(
-                                item.name!!, mainGroupID!!, item.id!!
+                                item.name!!, mainGroupID!!, item.id!!, item.productsCount!!
                             )
                         )
                     }
@@ -154,6 +202,7 @@ class ProductSubGroupFragment : Fragment() {
                     if (!response.list.isNullOrEmpty()) {
                         binding.txtEmptyRows.visibility = View.GONE
                         productGroupsAdapter!!.submitList(response.list)
+                        data = response.list
                     } else {
                         binding.txtEmptyRows.visibility = View.VISIBLE
                     }

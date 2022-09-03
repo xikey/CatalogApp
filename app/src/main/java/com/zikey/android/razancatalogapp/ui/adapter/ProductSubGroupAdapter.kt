@@ -61,16 +61,20 @@ class ProductSubGroupAdapter(private val fragment: Fragment, private val onSelec
                 imageBox.layoutParams = imageParams
 
 
-                FontChanger().applyMainFont(txtName)
-                ImageViewWrapper(fragment.requireContext()).FromUrl(item.imageURL2)
+                FontChanger().applyTitleFont(txtName)
+                FontChanger().applyNumberFont(txtProductCount)
+                ImageViewWrapper(fragment.requireContext()).FromUrl(item.imageURL1)
                     .into(imgWallpaper).defaultImage(R.drawable.img_yadegar_loader).load()
                 try {
 
                     txtName.setText(item.name)
 
+
                     crdContent.setOnClickListener {
-              onSelectListener.onSelect(item)
+                        onSelectListener.onSelect(item)
                     }
+
+                    txtProductCount.setText("${item.productsCount} کالا ")
 
                 } catch (e: Exception) {
                     e.printStackTrace()

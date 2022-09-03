@@ -17,8 +17,8 @@
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
         android:id="@+id/constraint"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
@@ -31,25 +31,23 @@
 
 
             <ImageView
-                android:layout_gravity="center_horizontal"
                 android:id="@+id/imgWallpaper"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="15dp"
                 android:background="#f6f6f6" />
 
 
             <LinearLayout
                 android:id="@+id/lyBotom"
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:paddingBottom="10dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txtName"
@@ -60,18 +58,28 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:textColor="@color/color_text"
-                    android:textSize="@dimen/small_font_size" />
-
+                    android:textSize="@dimen/normal_font_size" />
 
                 <TextView
-                    android:id="@+id/txtPrice"
+                    android:id="@+id/txtSubCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:maxLines="1"
+                    android:maxLines="2"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
                     android:textColor="@color/color_text"
-                    android:textSize="@dimen/very_small_font_size"
-                    android:visibility="gone" />
+                    android:textSize="@dimen/very_small_font_size" />
+                <TextView
+                    android:id="@+id/txtProductCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/very_small_font_size" />
 
 
             </LinearLayout>

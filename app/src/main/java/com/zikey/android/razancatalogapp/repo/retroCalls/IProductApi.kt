@@ -36,5 +36,10 @@ interface IProductApi {
     fun advertises(
     ): Single<AdvertisesWrapper>
 
+    @GET("product/productsearch?")
+    fun searchProducts(
+        @Query("key") keySearch: String,
+    ): Single<ProductsWrapper>
+
 
 }

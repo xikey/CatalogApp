@@ -8,13 +8,17 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.zikey.android.razancatalogapp.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.zikey.android.razancatalogapp.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
+        tools:layout="@layout/fragment_dashboard">
         <action
             android:id="@+id/action_navigation_dashboard_to_productSubGroupFragment"
             app:destination="@id/productSubGroupFragment" />
@@ -30,16 +34,16 @@
         android:id="@+id/productSubGroupFragment"
         android:name="com.zikey.android.razancatalogapp.ui.product_sub_group.ProductSubGroupFragment"
         android:label="fragment_product_sub_group"
-        tools:layout="@layout/fragment_product_sub_group" >
+        tools:layout="@layout/fragment_product_sub_group">
 
         <argument
             android:name="mainGroupId"
-            app:argType="long"
-            android:defaultValue="0L" />
+            android:defaultValue="0L"
+            app:argType="long" />
 
         <argument
             android:name="mainGroupName"
-            app:argType="string"/>
+            app:argType="string" />
 
         <action
             android:id="@+id/action_productSubGroupFragment_to_navigation_dashboard"
@@ -53,25 +57,42 @@
         android:id="@+id/productsFragment"
         android:name="com.zikey.android.razancatalogapp.ui.products.ProductsFragment"
         android:label="fragment_products"
-        tools:layout="@layout/fragment_products" >
+        tools:layout="@layout/fragment_products">
 
         <argument
             android:name="mainGroupId"
-            app:argType="long"
-            android:defaultValue="0L" />
+            android:defaultValue="0L"
+            app:argType="long" />
 
         <argument
             android:name="subGroupId"
-            app:argType="long"
-            android:defaultValue="0L" />
+            android:defaultValue="0L"
+            app:argType="long" />
 
         <argument
             android:name="subGroupName"
-            app:argType="string"/>
+            app:argType="string" />
+
+        <argument
+            android:name="productCount"
+            android:defaultValue="0L"
+            app:argType="long" />
 
         <action
-            app:popUpTo="@id/productSubGroupFragment"
-            android:id="@+id/action_dismiss" />
+            android:id="@+id/action_dismiss"
+            app:popUpTo="@id/productSubGroupFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.zikey.android.razancatalogapp.ui.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search">
+
+        <action
+            android:id="@+id/action_dismiss"
+            app:popUpTo="@id/navigation_home" />
+
     </fragment>
 
 

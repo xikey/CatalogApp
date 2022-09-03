@@ -36,6 +36,10 @@ interface IProduct : IRepo<ProductsWrapper> {
     fun getAdvertises(
         ): Single<AdvertisesWrapper>
 
+    fun searchProducts(
+        keySearch: String,
+    ): Single<ProductsWrapper>
+
 
 
 

@@ -8,6 +8,7 @@ data class ProductSubGroup(
     @SerializedName("p") var products: List<Product>?,
     @SerializedName("iu") val imageURL1: String?,
     @SerializedName("iu2") val imageURL2: String?,
+    @SerializedName("pc") val productsCount: Long?,
     var isSelected: Boolean,
 
     )
