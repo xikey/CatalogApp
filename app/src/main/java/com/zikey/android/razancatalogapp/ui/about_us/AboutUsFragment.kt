@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.razanpardazesh.com.resturantapp.tools.FontChanger
+import com.zikey.android.razancatalogapp.R
+import com.zikey.android.razancatalogapp.core.ImageViewWrapper
 import com.zikey.android.razancatalogapp.databinding.FragmentAboutUsBinding
 
 
@@ -40,8 +42,12 @@ class AboutUsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        ImageViewWrapper(requireContext()).into(binding.imgBackAboutUs).loadFromDrowable(R.drawable.bg_yadegar_location_gmap)
+
         FontChanger().applyMainFont(binding.root)
         FontChanger().applyTitleFont(binding.lyDetail)
+
 
         binding.crdShowMap.setOnClickListener {
 

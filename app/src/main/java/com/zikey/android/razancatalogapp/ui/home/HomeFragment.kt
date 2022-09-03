@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.razanpardazesh.com.resturantapp.tools.FontChanger
+import com.zikey.android.razancatalogapp.R
+import com.zikey.android.razancatalogapp.core.ImageViewWrapper
 import com.zikey.android.razancatalogapp.core.ScreenSize
 import com.zikey.android.razancatalogapp.databinding.FragmentHomeBinding
 import com.zikey.android.razancatalogapp.model.Advertise
@@ -85,6 +87,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun initTopTenSize() {
+        ImageViewWrapper(requireContext()).into(binding.lyContent.lyTopTen.imgSpecial).loadFromDrowable(R.drawable.ic_offer_png)
+
+//        binding.lyContent.lyTopTen.
 
         val box: View = binding.lyContent.lyTopTen.lyShortcuts
         val width = ScreenSize.width
@@ -188,6 +193,7 @@ class HomeFragment : Fragment() {
 
 
     private fun initAdvertiseView(count: Int, advertises: List<Advertise>) {
+
         if (_binding == null)
             return
 
@@ -241,7 +247,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun getData() {
-
 
         viewModel.getAdvertises()
         viewModel.getProducts()

@@ -47,7 +47,6 @@ class ZikeySplashActivity : AppCompatActivity() {
 
         _binding = ActivityZikeySplashBinding.inflate(layoutInflater)
 
-
         setContentView(binding.root)
 
     }
@@ -57,7 +56,7 @@ class ZikeySplashActivity : AppCompatActivity() {
         super.onStart()
 
         initScreenSize()
-        initAnimation()
+       // initAnimation()
         runHandler()
         fadeInImageAnimator()
         fadeOutImageAnimator()
@@ -246,6 +245,13 @@ class ZikeySplashActivity : AppCompatActivity() {
             //  .putExtra()
             context.startActivity(starter)
         }
+    }
+
+    override fun onDestroy() {
+        _binding = null
+
+        super.onDestroy()
+
     }
 
 

@@ -32,12 +32,12 @@
                 android:textSize="@dimen/big_font_size" />
 
             <ImageView
+                android:id="@+id/imgSpecial"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="10dp"
                 android:visibility="visible"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_offer_png" />
+                android:scaleType="centerInside"/>
 
 
         </LinearLayout>
