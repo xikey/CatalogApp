@@ -26,5 +26,9 @@ data class Product(
     @SerializedName("br") var subGroup: String?,
     @SerializedName("gr") var mainGroup: String,
     @SerializedName("qip") var boxCapacity: Double,
+    @SerializedName("w") var weight: Double,
+    @SerializedName("s") var size: Double,
+    @SerializedName("mu") var mainUnit: String,
+    @SerializedName("su") var subUnit: String,
 
     ) : Serializable

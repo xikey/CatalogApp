@@ -179,6 +179,17 @@ class CatalogFragment : DialogFragment() {
             binding.lyContent.txtName.setText(product.name)
             binding.lyContent.txtCountPerPack.setText("تعداد در بسته :${product.boxCapacity}")
 
+            //UnitType
+            if (TextUtils.isEmpty(product.mainUnit))
+                binding.lyContent.txtUnitType.visibility = View.GONE
+            else
+                binding.lyContent.txtUnitType.setText(("واحد سنجش :${product.mainUnit}"))
+
+
+                binding.lyContent.txtWeight.setText(("وزن :${product.weight} کیلوگرم"))
+                binding.lyContent.txtSize.setText(("ابعاد :${product.size} متر مکعب"))
+
+
             //feature 1
             if (TextUtils.isEmpty(product.feature1))
                 binding.lyContent.txtFeature1.visibility = View.GONE
