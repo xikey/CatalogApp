@@ -56,7 +56,7 @@ class MainTopTenAdapter(private val fragment: Fragment, private val onSelect: On
 
                 FontChanger().applyNumberFont(txtName)
                 ImageViewWrapper(fragment.requireContext()).FromUrl(item.imageUrl)
-                    .into(imgWallpaper).defaultImage(R.drawable.img_yadegar_loader).load()
+                    .into(imgWallpaper).defaultImage(R.drawable.img_yadegar_loader).loadCenterCrop()
                 try {
 
                     txtName.setText(item.name)

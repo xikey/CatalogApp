@@ -64,7 +64,7 @@ class ProductSubGroupAdapter(private val fragment: Fragment, private val onSelec
                 FontChanger().applyTitleFont(txtName)
                 FontChanger().applyNumberFont(txtProductCount)
                 ImageViewWrapper(fragment.requireContext()).FromUrl(item.imageURL1)
-                    .into(imgWallpaper).defaultImage(R.drawable.img_yadegar_loader).load()
+                    .into(imgWallpaper).defaultImage(R.drawable.img_yadegar_loader).loadCenterCrop()
                 try {
 
                     txtName.setText(item.name)

@@ -67,7 +67,8 @@ class DashboardFragment : Fragment() {
 
     private fun getData() {
 
-        viewModel.getProductMainGroups(requireContext())
+
+        viewModel.getProductMainGroups( )
     }
 
     private fun initProductGroupsObserver() {

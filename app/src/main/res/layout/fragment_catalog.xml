@@ -29,7 +29,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_collapseMode="parallax"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"></androidx.recyclerview.widget.RecyclerView>
+                android:layoutDirection="ltr"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"

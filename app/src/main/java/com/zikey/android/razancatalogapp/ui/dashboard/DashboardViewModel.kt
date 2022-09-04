@@ -31,7 +31,7 @@ class DashboardViewModel  @Inject constructor(
     val productGroupError = MutableLiveData<Boolean>()
     val progress: LiveData<Boolean> = loading
 
-    fun getProductMainGroups(context: Context) {
+    fun getProductMainGroups() {
 
         if (productGroupDataResponse.value != null && !productGroupDataResponse.value!!.list.isNullOrEmpty())
             return

@@ -3,6 +3,7 @@ package com.zikey.android.razancatalogapp.ui.products
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.*
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
@@ -174,7 +175,43 @@ class CatalogFragment : DialogFragment() {
 
     fun initContent() {
         try {
-            binding.lyContent.txtName.setText(products!!.get(selectedPosition).name)
+            val product = products!!.get(selectedPosition)
+            binding.lyContent.txtName.setText(product.name)
+            binding.lyContent.txtCountPerPack.setText("تعداد در بسته :${product.boxCapacity}")
+
+            //feature 1
+            if (TextUtils.isEmpty(product.feature1))
+                binding.lyContent.txtFeature1.visibility = View.GONE
+            else
+                binding.lyContent.txtFeature1.setText(product.feature1)
+
+
+            //feature 2
+            if (TextUtils.isEmpty(product.feature2))
+                binding.lyContent.txtFeature2.visibility = View.GONE
+            else
+                binding.lyContent.txtFeature2.setText(product.feature2)
+
+            //feature 3
+            if (TextUtils.isEmpty(product.feature3))
+                binding.lyContent.txtFeature3.visibility = View.GONE
+            else
+                binding.lyContent.txtFeature3.setText(product.feature3)
+
+            //feature 4
+            if (TextUtils.isEmpty(product.feature4))
+                binding.lyContent.txtFeature4.visibility = View.GONE
+            else
+                binding.lyContent.txtFeature4.setText(product.feature4)
+
+            //feature 5
+            if (TextUtils.isEmpty(product.feature5))
+                binding.lyContent.txtFeature5.visibility = View.GONE
+            else
+                binding.lyContent.txtFeature5.setText(product.feature5)
+
+
+
         } catch (e: Exception) {
             e.printStackTrace()
         }

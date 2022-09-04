@@ -29,11 +29,11 @@
             <ImageView
                 android:background="#f6f6f6"
                 android:layout_margin="10dp"
+                android:scaleType="centerCrop"
                 android:id="@+id/imgWallpaper"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:padding="9dp" />
+                android:layout_weight="0.5"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
