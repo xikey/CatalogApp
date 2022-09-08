@@ -64,7 +64,7 @@ class MainTopTenAdapter(private val fragment: Fragment, private val onSelect: On
                         onSelectListener.onSelect(item, position)
                     }
 
-
+                    txtGroups.setText("${item.mainGroup} -> ${item.subGroup}")
 
                 } catch (e: Exception) {
                     e.printStackTrace()

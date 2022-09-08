@@ -20,7 +20,11 @@ import com.zikey.android.razancatalogapp.model.ProductMainGroup
 import com.zikey.android.razancatalogapp.model.ProductSubGroup
 
 
-class ProductsAdapter(private val fragment: Fragment, private val onSelect: OnSelectItem) :
+class ProductsAdapter(
+    private val fragment: Fragment,
+    private val onSelect: OnSelectItem,
+    private val searchMode: Boolean
+) :
     ListAdapter<Product, RecyclerView.ViewHolder>(ItemsDiffCallback()) {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -43,7 +47,9 @@ class ProductsAdapter(private val fragment: Fragment, private val onSelect: OnSe
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Product, position: Int) {
+
             binding.apply {
+
                 val box: View = binding.crdContent
                 val width = ScreenSize.width
                 val height = (width / 3) * 2
@@ -63,7 +69,8 @@ class ProductsAdapter(private val fragment: Fragment, private val onSelect: OnSe
                 imageBox.layoutParams = imageParams
 
 
-                FontChanger().applyMainFont(txtName)
+                FontChanger().applyTitleFont(txtName)
+                FontChanger().applyMainFont(txtGroups)
                 ImageViewWrapper(fragment.requireContext()).FromUrl(item.imageUrl)
                     .into(imgWallpaper).defaultImage(R.drawable.img_yadegar_loader).load()
                 try {
@@ -74,6 +81,7 @@ class ProductsAdapter(private val fragment: Fragment, private val onSelect: OnSe
                         onSelectListener.onSelect(item, position)
                     }
 
+                    txtGroups.setText("${item.mainGroup} -> ${item.subGroup}")
 
                 } catch (e: Exception) {
                     e.printStackTrace()

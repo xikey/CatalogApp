@@ -1,6 +1,5 @@
 package com.zikey.android.razancatalogapp.repo.server_repo
 
-import android.content.Context
 import com.zikey.android.razancatalogapp.model.wrapper.AdvertisesWrapper
 import com.zikey.android.razancatalogapp.model.wrapper.ProductMainGroupsWrapper
 import com.zikey.android.razancatalogapp.model.wrapper.ProductSubGroupsWrapper

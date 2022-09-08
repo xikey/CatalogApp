@@ -83,6 +83,9 @@ dependencies {
     //ViewPager2
     implementation("androidx.viewpager2:viewpager2:1.0.0")
 
+    //DEXTER
+    implementation 'com.karumi:dexter:6.2.3'
+
 
     //Tests
     testImplementation 'junit:junit:4.13.2'

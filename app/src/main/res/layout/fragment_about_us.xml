@@ -4,199 +4,143 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="55dp"
+    android:background="@color/white"
     android:layoutDirection="rtl"
     tools:context=".ui.about_us.AboutUsFragment">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:id="@+id/imgBackAboutUs" />
 
-    <ImageView
+    <RelativeLayout
+        android:id="@+id/lyTop"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg_shadow_white_laft_to_right"
-        android:scaleType="centerCrop" />
+        android:layout_height="250dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary" >
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/crdShowMap"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="2dp"
-        app:cardElevation="5dp"
-        app:cardUseCompatPadding="true">
-
-        <LinearLayout
+        <ImageView
+            android:id="@+id/imgAvatar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="match_parent"/>
 
-            <ImageView
-                android:layout_width="?attr/actionBarSize"
-                android:layout_height="?attr/actionBarSize"
-                android:scaleType="center"
-                android:src="@drawable/ic_round_search_24" />
+        
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/txtSearch"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:padding="5dp"
-                android:text="جستجو کردن ما روی نقشه"
-                android:textColor="#515257"
-                android:textSize="@dimen/small_font_size" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_above="@id/lyBottom"
+        android:layout_below="@id/lyTop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="?attr/actionBarSize"
-                android:layout_height="?attr/actionBarSize"
-                android:padding="15dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_google_map_png" />
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/txtComment"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
 
-        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-    </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
+        android:id="@+id/lyBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="80dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="2dp"
-        app:cardElevation="5dp"
-        app:cardUseCompatPadding="true">
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/lyDetail"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
+            android:paddingTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:gravity="center_horizontal">
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/imgEmail"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_mail_primary" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/ic_round_location_on_primary_16"
-                    android:drawablePadding="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="10dp"
-                    android:text="آدرس"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/very_small_font_size" />
+            <ImageView
+                android:id="@+id/imgWebSite"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="15dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_globe_primary" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/ic_baseline_remove_16_white"
-                    android:drawablePadding="10dp"
-                    android:paddingRight="10dp"
-                    android:text="@string/yadegar_address"
-                    android:textSize="@dimen/very_small_font_size" />
+            <ImageView
+                android:id="@+id/imgInstagram"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="15dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_instagram_primary" />
 
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/ic_baseline_phone_enabled_16_about_us"
-                    android:drawablePadding="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="10dp"
-                    android:text="تلفن"
-                    android:textColor="#F5BB2C"
-                    android:textSize="@dimen/very_small_font_size" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/ic_baseline_remove_16_white"
-                    android:drawablePadding="10dp"
-                    android:paddingRight="10dp"
-                    android:text="@string/yadegar_phone"
-                    android:textSize="@dimen/very_small_font_size" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/ic_round_print_16_about_us"
-                    android:drawablePadding="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="10dp"
-                    android:text="فکس"
-                    android:textColor="#0BA5BE"
-                    android:textSize="@dimen/very_small_font_size" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/ic_baseline_remove_16_white"
-                    android:drawablePadding="10dp"
-                    android:paddingRight="10dp"
-                    android:text="@string/yadegar_fax"
-                    android:textSize="@dimen/very_small_font_size" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/ic_round_email_16_about_us"
-                    android:drawablePadding="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="10dp"
-                    android:text="ایمیل"
-                    android:textColor="#EF8A84"
-                    android:textSize="@dimen/very_small_font_size" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/ic_baseline_remove_16_white"
-                    android:drawablePadding="10dp"
-                    android:paddingRight="10dp"
-                    android:text="@string/yadegar_email"
-                    android:textSize="@dimen/very_small_font_size" />
-
-            </LinearLayout>
-
+            <ImageView
+                android:id="@+id/imgLocation"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="15dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_map_pin_primary" />
 
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+        <LinearLayout
+            android:focusable="true"
+            android:clickable="true"
+            android:id="@+id/imgCall"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_btn_about_us"
+            android:layout_marginRight="40dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:drawableRight="@drawable/ic_headphones_primary"
+                android:layout_width="wrap_content"
+                android:drawablePadding="10dp"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:text="تماس با ما"
+                android:textColor="@color/white"
+                android:textSize="@dimen/normal_font_size" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:alpha="0.7"
+                android:textColor="@color/black"
+                android:text="طراح وتوسعه: RazanPardazesh"
+                android:textSize="@dimen/small_font_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+    <include  android:id="@+id/lyProgress"  layout="@layout/layout_progress_match_parent_with_title" />
+
 
 
 </RelativeLayout>

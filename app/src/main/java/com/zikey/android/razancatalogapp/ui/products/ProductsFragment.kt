@@ -186,7 +186,7 @@ class ProductsFragment : Fragment() {
 
                     }
 
-                })
+                },false)
 
 
         rvGroups = binding.rvProducts.apply {

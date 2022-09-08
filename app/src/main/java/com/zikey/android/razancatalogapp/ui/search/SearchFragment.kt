@@ -189,7 +189,7 @@ class SearchFragment : Fragment() {
         try {
             val imm =
                 requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(searchView.windowToken,0)
+            imm.hideSoftInputFromWindow(searchView.windowToken, 0)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -218,10 +218,9 @@ class SearchFragment : Fragment() {
                             )
                         }
 
-
                     }
 
-                })
+                }, true)
 
 
         rvGroups = binding.rvProducts.apply {
