@@ -207,8 +207,7 @@ class SearchFragment : Fragment() {
                         if (viewModel.productsResponse.value != null) {
                             CatalogFragment.newInstance(
                                 requireActivity().supportFragmentManager,
-                                viewModel.productsResponse.value!!.products,
-                                position,
+                                item,
                                 object : CatalogFragment.ScrollListener {
                                     override fun onScroll(position: Int) {
                                         rvGroups?.scrollToPosition(position)

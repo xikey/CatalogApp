@@ -160,7 +160,8 @@ class ProductsFragment : Fragment() {
                 return true
             }
 
-        })    }
+        })
+    }
 
     private fun initRecycleView() {
 
@@ -172,9 +173,8 @@ class ProductsFragment : Fragment() {
                         if (viewModel.productsResponse.value != null) {
                             CatalogFragment.newInstance(
                                 requireActivity().supportFragmentManager,
-                                viewModel.productsResponse.value!!.products,
-                                position,
-                                object:CatalogFragment.ScrollListener{
+                                item,
+                                object : CatalogFragment.ScrollListener {
                                     override fun onScroll(position: Int) {
                                         rvGroups?.scrollToPosition(position)
                                     }
@@ -186,7 +186,7 @@ class ProductsFragment : Fragment() {
 
                     }
 
-                },false)
+                }, false)
 
 
         rvGroups = binding.rvProducts.apply {

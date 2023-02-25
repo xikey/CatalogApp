@@ -56,8 +56,6 @@ class ZikeySplashActivity : AppCompatActivity() {
         super.onStart()
 
         initScreenSize()
-       // initAnimation()
-        runHandler()
         fadeInImageAnimator()
         fadeOutImageAnimator()
         slideInEnglishTitle()
@@ -73,12 +71,6 @@ class ZikeySplashActivity : AppCompatActivity() {
 
     }
 
-    //جهت تعیین زمان نمایش صفحه خوشامدگویی
-    private fun runHandler() {
-        Handler().postDelayed(Runnable {
-//            openLoginActivity()
-        }, SPLASH_DISPLAY_LENGTH.toLong())
-    }
 
 
     private fun initAnimation() {

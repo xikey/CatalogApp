@@ -20,26 +20,43 @@
         <ImageView
             android:id="@+id/imgAvatar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
-        
+
     </RelativeLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <RelativeLayout
         android:layout_above="@id/lyBottom"
+        android:background="@color/white"
         android:layout_below="@id/lyTop"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:textColor="@color/black"
-            android:id="@+id/txtComment"
-            android:layout_margin="@dimen/text_margin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:alpha="0.1"
+            android:background="@drawable/bg_shadow_bottom_to_up"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+
+        <androidx.core.widget.NestedScrollView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:textColor="@color/black" />
 
 
-    </androidx.core.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
+
+
+    </RelativeLayout>
+
 
 
     <LinearLayout
@@ -48,6 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
+
 
         <LinearLayout
             android:paddingTop="20dp"

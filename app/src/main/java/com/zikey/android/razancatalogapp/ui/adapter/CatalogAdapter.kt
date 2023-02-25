@@ -44,8 +44,14 @@ class CatalogAdapter(private val fragment: Fragment, private val onSelect: OnSel
 
             binding.apply {
 
-                ImageViewWrapper(fragment.requireContext()).FromUrl(item.imageLargeUrl)
-                    .into(pic).defaultImage(R.drawable.img_yadegar_loader).load()
+             ImageViewWrapper(fragment.requireContext()).FromUrl(item.imageUrl)
+                 .into(pic).defaultImage(R.drawable.img_yadegar_loader).load()
+
+                FontChanger().applyTitleFont(txtName)
+                FontChanger().applyTitleFont(txtMainGroup)
+
+                txtName.setText(item.name)
+                txtMainGroup.setText(item.mainGroup+" -> "+item.subGroup)
 
             }
         }

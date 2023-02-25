@@ -87,7 +87,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun initTopTenSize() {
-        ImageViewWrapper(requireContext()).into(binding.lyContent.lyTopTen.imgSpecial).loadFromDrowable(R.drawable.ic_offer_png)
+        ImageViewWrapper(requireContext()).into(binding.lyContent.lyTopTen.imgSpecial)
+            .loadFromDrowable(R.drawable.ic_offer_png)
 
 //        binding.lyContent.lyTopTen.
 
@@ -136,12 +137,12 @@ class HomeFragment : Fragment() {
                 override fun onSelect(item: Product, position: Int) {
 
                     CatalogFragment.newInstance(requireActivity().supportFragmentManager,
-                        viewModel.productDataResponse.value?.products,position,object:CatalogFragment.ScrollListener{
-                        override fun onScroll(position: Int) {
+                        item, object : CatalogFragment.ScrollListener {
+                            override fun onScroll(position: Int) {
 
-                        }
+                            }
 
-                    })
+                        })
 
                 }
 
@@ -173,7 +174,7 @@ class HomeFragment : Fragment() {
                         if (originalPos[0] - firstItemXPositionOnStart >= 0) {
                             val alpgha: Float =
                                 (originalPos[0] - firstItemXPositionOnStart).toFloat()
-                           // Log.e("POSITION", "onScrolled: ${100 - alpgha / 2}")
+                            // Log.e("POSITION", "onScrolled: ${100 - alpgha / 2}")
                             binding.lyContent.lyTopTen.lyRightSide.alpha =
                                 ((100 - alpgha / 2) / 100)
                         }

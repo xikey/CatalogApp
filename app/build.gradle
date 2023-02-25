@@ -15,7 +15,8 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-        buildConfigField("String", "URL", '"http://192.168.1.17:129"')
+       // buildConfigField("String", "URL", '"http://89.144.140.66:129"')
+      buildConfigField("String", "URL", '"http://5.235.187.113:100"')
         buildConfigField("String", "TOKEN", '"asdas0d2sad5sad0dsa65dsa"')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -53,6 +54,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
     //MotionToast
     implementation 'com.github.Spikeysanju:MotionToast:1.4'
@@ -85,6 +87,9 @@ dependencies {
 
     //DEXTER
     implementation 'com.karumi:dexter:6.2.3'
+
+    //RecyclerIndicator
+    implementation 'me.relex:circleindicator:2.1.6'
 
 
     //Tests

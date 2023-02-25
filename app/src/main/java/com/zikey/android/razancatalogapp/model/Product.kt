@@ -15,7 +15,7 @@ data class Product(
     @SerializedName("p") var price_WithoutDiscount: Long?,
     @SerializedName("cp") var price_WithDiscount: Long?,
     @SerializedName("iu") var imageUrl: String?,
-    @SerializedName("iu2") var imageLargeUrl: String?,
+    @SerializedName("iu2") var imageLargeUrls: List<String>?,
     @SerializedName("av") var availability: Double?,
     @SerializedName("pg") var discountPercentage: Double,
     @SerializedName("f1") var feature1: String?,

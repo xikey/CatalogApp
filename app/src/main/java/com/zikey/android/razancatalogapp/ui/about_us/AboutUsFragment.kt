@@ -22,6 +22,7 @@ import com.karumi.dexter.listener.single.PermissionListener
 import com.razanpardazesh.com.resturantapp.tools.FontChanger
 import com.zikey.android.razancatalogapp.R
 import com.zikey.android.razancatalogapp.core.ImageViewWrapper
+import com.zikey.android.razancatalogapp.core.ScreenSize
 import com.zikey.android.razancatalogapp.databinding.FragmentAboutUsBinding
 import com.zikey.android.razancatalogapp.model.CompanyInformation
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,11 +60,24 @@ class AboutUsFragment : Fragment() {
 
         FontChanger().applyMainFont(binding.root)
         initProgress()
+        initTopTenSize()
         initProductGroupsObserver()
         getData()
         initListeners()
 
     }
+
+    private fun initTopTenSize() {
+
+        val box: View = binding.lyTop
+        val width = ScreenSize.width
+        val height = (width * 60) / 100
+        val params = box.layoutParams
+        params.height = height
+
+        box.layoutParams = params
+    }
+
 
     private fun initListeners() {
 
@@ -238,20 +252,9 @@ class AboutUsFragment : Fragment() {
     }
 
     fun openInstagramBrowser(address: String) {
-        var url = address
-        if (!url.contains("http")) {
-            url = "http://" + address
-        }
-        val browserIntent = Intent(Intent.ACTION_VIEW).apply {
-            data = Uri.parse(url)
-            `package` = "com.instagram.android"
-        }
-        try {
-            startActivity(browserIntent)
-        } catch (e: Exception) {
-            val url = "http://www.instagram.com/" + address.removePrefix("@")
-            openWebBrowser(url)
-        }
+
+        val url = "http://www.instagram.com/" + address.removePrefix("@")
+        openWebBrowser(url)
 
     }
 
@@ -323,7 +326,7 @@ class AboutUsFragment : Fragment() {
 
     fun initContents() {
 
-        if (companyInformation==null)
+        if (companyInformation == null)
             return
 
         ImageViewWrapper(requireContext()).FromUrl(companyInformation!!.imageUrl)
@@ -334,9 +337,8 @@ class AboutUsFragment : Fragment() {
             return
 
         try {
-            binding.txtComment.setText(companyInformation!!.details!!.find {  it.name!! == "درباره ما" }!!.value)
-        }
-        catch (e:Exception){
+            binding.txtComment.setText(companyInformation!!.details!!.find { it.name!! == "درباره ما" }!!.value)
+        } catch (e: Exception) {
             e.printStackTrace()
         }
 
