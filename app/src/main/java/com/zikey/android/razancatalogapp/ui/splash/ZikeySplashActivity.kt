@@ -1,27 +1,27 @@
 package com.zikey.android.razancatalogapp.ui.splash
 
+import android.animation.Animator
 import android.content.Intent
-import android.graphics.drawable.AnimationDrawable
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
+import android.view.ViewAnimationUtils
 import android.view.WindowManager
-import android.view.animation.*
-import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import com.razanpardazesh.com.resturantapp.tools.FontChanger
-import com.zikey.android.razancatalogapp.R
-import com.zikey.android.razancatalogapp.databinding.ActivityZikeySplashBinding
-import com.zikey.android.razancatalogapp.databinding.FragmentHomeBinding
-import android.widget.Toast
-import androidx.cardview.widget.CardView
 import com.zikey.android.razancatalogapp.MainActivity
 import com.zikey.android.razancatalogapp.core.ScreenSize
+import com.zikey.android.razancatalogapp.databinding.ActivityZikeySplashBinding
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import render.animations.*
+import kotlin.math.hypot
+
 
 class ZikeySplashActivity : AppCompatActivity() {
 
@@ -32,14 +32,11 @@ class ZikeySplashActivity : AppCompatActivity() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    var fadeInAnimation: Animation? = null
-    var fadeOutAnimation: Animation? = null
-    var englishTitleSlidedOut = false
 
     /**
      * Duration of wait
      */
-    private val SPLASH_DISPLAY_LENGTH = 6000
+    private val SPLASH_DISPLAY_LENGTH = 4000L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,10 +53,19 @@ class ZikeySplashActivity : AppCompatActivity() {
         super.onStart()
 
         initScreenSize()
-        fadeInImageAnimator()
-        fadeOutImageAnimator()
-        slideInEnglishTitle()
-        slideInPersianTitle()
+        FontChanger().applyTitleFont(_binding!!.lyText)
+        runHandler()
+
+        CoroutineScope(IO).launch {
+            delay(1000)
+            withContext(Main) {
+
+                revealContent()
+
+            }
+
+        }
+
     }
 
     private fun initScreenSize() {
@@ -71,139 +77,14 @@ class ZikeySplashActivity : AppCompatActivity() {
 
     }
 
+    //جهت تعیین زمان نمایش صفحه خوشامدگویی
+    private fun runHandler() {
 
-
-    private fun initAnimation() {
-        val animationDrawable = binding.layoutRoot.background as AnimationDrawable
-        animationDrawable.setEnterFadeDuration(10)
-        animationDrawable.setExitFadeDuration(1800)
-        animationDrawable.start()
-    }
-
-    fun fadeInImageAnimator() {
-
-        fadeInAnimation = AnimationUtils.loadAnimation(
-            this,
-            R.anim.fade_in
-        )
-        fadeInAnimation!!.interpolator = AccelerateInterpolator()
-        fadeInAnimation!!.duration = 2000L
-        fadeInAnimation!!.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(p0: Animation?) {
-            }
-
-            override fun onAnimationEnd(p0: Animation?) {
-
-                binding.imgWhiteAvatar.startAnimation(fadeOutAnimation)
-            }
-
-            override fun onAnimationRepeat(p0: Animation?) {
-            }
-
-        })
-
-        binding.imgWhiteAvatar.startAnimation(fadeInAnimation)
-
-
-    }
-
-    fun fadeOutImageAnimator() {
-
-        fadeOutAnimation = AnimationUtils.loadAnimation(
-            this,
-            R.anim.fade_out
-        )
-        fadeOutAnimation?.interpolator = AccelerateInterpolator()
-        fadeOutAnimation!!.duration = 2000L
-        fadeOutAnimation?.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(p0: Animation?) {
-
-            }
-
-            override fun onAnimationEnd(p0: Animation?) {
-                binding.imgWhiteAvatar.startAnimation(fadeInAnimation)
-            }
-
-            override fun onAnimationRepeat(p0: Animation?) {
-
-            }
-
-        })
-
-
-    }
-
-    fun slideInEnglishTitle() {
-        val animation: Animation = AnimationUtils.loadAnimation(
-            this,
-            R.anim.slide_in
-        )
-        animation.startOffset = 1000
-        animation.interpolator = AnticipateOvershootInterpolator()
-        animation.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(p0: Animation?) {
-
-            }
-
-            override fun onAnimationEnd(p0: Animation?) {
-                if (!englishTitleSlidedOut) {
-                    slideOutEnglishTitle()
-                }
-            }
-
-            override fun onAnimationRepeat(p0: Animation?) {
-
-            }
-
-        })
-
-        binding.imgYadegarEngText.startAnimation(animation)
-
-
-    }
-
-    fun slideOutEnglishTitle() {
-        val animation: Animation = AnimationUtils.loadAnimation(
-            this,
-            R.anim.slide_out
-        )
-        animation.startOffset = 1000
-        animation.interpolator = AnticipateOvershootInterpolator()
-
-        binding.imgYadegarEngText.startAnimation(animation)
-        englishTitleSlidedOut = true
-
-    }
-
-
-    fun slideInPersianTitle() {
-        val animation: Animation = AnimationUtils.loadAnimation(
-            this,
-            R.anim.slide_in
-        )
-        animation.startOffset = 3000
-        animation.interpolator = AnticipateOvershootInterpolator()
-        animation.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(p0: Animation?) {
-
-            }
-
-            override fun onAnimationEnd(p0: Animation?) {
-                CoroutineScope(Main).launch {
-                    MainActivity.start(this@ZikeySplashActivity)
-                    finish()
-                }
-
-            }
-
-            override fun onAnimationRepeat(p0: Animation?) {
-
-            }
-
-        })
-        binding.imgYadegarFarsiText.startAnimation(animation)
-
-
+        CoroutineScope(IO).launch {
+            delay(SPLASH_DISPLAY_LENGTH)
+            MainActivity.start(this@ZikeySplashActivity)
+            finish()
+        }
     }
 
 
@@ -230,6 +111,7 @@ class ZikeySplashActivity : AppCompatActivity() {
         }
     }
 
+
     companion object {
         @JvmStatic
         fun start(context: FragmentActivity) {
@@ -244,6 +126,48 @@ class ZikeySplashActivity : AppCompatActivity() {
 
         super.onDestroy()
 
+    }
+
+    private fun revealContent() {
+        val view = _binding!!.layoutRoot
+        ///Center start
+//        val cx = view.width / 2
+//        val cy = view.height / 2
+//        val finalRadius = Math.hypot(cx.toDouble(), cy.toDouble()).toFloat()
+//        val anim: Animator = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0f, finalRadius)
+
+        ///bottom right start
+        val cx = view.right
+        val cy = view.bottom
+        val startRadius = 0f
+        val endRadius = hypot(view.width.toDouble(), view.height.toDouble()).toFloat()
+        val anim: Animator =
+            ViewAnimationUtils.createCircularReveal(view, cx, cy, startRadius, endRadius)
+
+        view.visibility = View.VISIBLE
+        anim.duration = 1200
+        anim.start()
+        anim.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(p0: Animator?) {
+
+            }
+
+            override fun onAnimationEnd(p0: Animator?) {
+
+                val render = Render(this@ZikeySplashActivity)
+                render.setAnimation(Flip.InX(_binding!!.txt1));
+                render.start();
+            }
+
+            override fun onAnimationCancel(p0: Animator?) {
+
+            }
+
+            override fun onAnimationRepeat(p0: Animator?) {
+
+            }
+
+        })
     }
 
 

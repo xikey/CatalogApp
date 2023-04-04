@@ -32,6 +32,14 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.RazanCatalogApp.Progress">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/white</item>
+        <item name="colorSecondaryVariant">@color/white</item>
+    </style>
+
     <style name="Theme.RazanCatalogApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.RazanCatalogApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

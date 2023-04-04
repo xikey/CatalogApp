@@ -4,65 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/lyContent"
+    android:visibility="visible"
+    android:background="@color/black"
     tools:context=".ui.splash.ZikeySplashActivity">
 
 
     <RelativeLayout
+        android:visibility="invisible"
         android:id="@+id/layoutRoot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradient_animation">
+        android:background="@color/colorPrimary">
 
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/middle"
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_centerInParent="true" />
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="190dp"
+                android:layout_height="190dp"
+                android:layout_above="@id/middle"
+                android:layout_centerInParent="true"
+                android:src="@drawable/img_yadegar_logo_colored_png" />
+
+            <LinearLayout
+                android:id="@+id/lyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgLogo"
+                android:gravity="center">
+
+                <TextView
+                    android:paddingTop="20dp"
+                    android:id="@+id/txt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:alpha="0"
+                    android:text="یادگار پخش"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"></TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
 
-        <ImageView
-            android:layout_above="@id/middle"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/img_yadegar_logo_colored_png" />
-
-        <ImageView
-            android:id="@+id/imgWhiteAvatar"
-            android:layout_above="@id/middle"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/img_yadegar_logo_white_png" />
-
-
-        <ImageView
-            android:id="@+id/imgYadegarEngText"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+        <ProgressBar
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="50dp"
-            android:src="@drawable/img_yadegar_text_english_colored" />
-
-        <ImageView
-            android:id="@+id/imgYadegarFarsiText"
-            android:visibility="visible"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="50dp"
-            android:src="@drawable/img_yadegar_text_farsi_colored" />
-
-
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:theme="@style/Theme.RazanCatalogApp.Progress" />
 
 
     </RelativeLayout>
